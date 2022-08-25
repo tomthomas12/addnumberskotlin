@@ -2,6 +2,7 @@ package com.example.sumnumbers
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
@@ -11,15 +12,36 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val num1 = findViewById(R.id.num1) as EditText
-        val num2 = findViewById(R.id.num2) as EditText
+        val usern = findViewById(R.id.user) as EditText
+        val passw = findViewById(R.id.password) as EditText
         val totn = findViewById(R.id.result) as TextView
-        val b1 = findViewById(R.id.addButton) as Button
+        val b1 = findViewById(R.id.login) as Button
+
+        var users= mapOf<String,String>("tom" to "hello" , "john" to "hey")
         b1.setOnClickListener {
-            val val1 = num1.text.toString().toInt()
-            val val2 = num2.text.toString().toInt()
-            val result = val1+val2
-            totn.setText(result.toString())
+            val username = usern.text.toString()
+            Log.d("tom", "onCreate: ${username}")
+
+            val password = passw.text.toString()
+            Log.d("tom", "onCreate: "+password )
+            if(users.containsKey(username) && users.containsValue(password)){
+                Log.d("tom", "onCreate: inside ")
+                totn.setText("loged in")
+            }
+            else{
+                totn.setText("worng user")
+            }
+//            for ((key, value) in users) {
+//                Log.d("tom", "onCreate: ${key.toString()} ")
+//                if(username == key.toString()){
+//                    if(password == value.toString()){
+//                        totn.setText("logined".toString())
+//                        break
+//                    }
+//                }
+
+            }
+                }
+
         }
-    }
-}
+
